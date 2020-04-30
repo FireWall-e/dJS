@@ -1,209 +1,152 @@
-import Head from 'next/head'
+import React from "react";
+import Hat from "../components/hat";
+import Styles from "../components/styles";
 
 export default function Home() {
-  return (
-    <div className="container">
-      <Head>
-        <title>Create Next App</title>
-        <link rel="icon" href="/favicon.ico" />
-      </Head>
+    const toggleClass = (target, articleId) => {
+        document.querySelector('.nav-item.active')?.classList.remove('active');
+        document.querySelector('article.show')?.classList.remove('show');
+        target.classList.add('active');
+        document.querySelector(`article#${articleId}`).classList.add('show');
+    };
 
-      <main>
-        <h1 className="title">
-          Welcome to <a href="https://nextjs.org">Next.js!</a>
-        </h1>
+    return (
+        <>
+            <Hat title={'Homepage'}/>
 
-        <p className="description">
-          Get started by editing <code>pages/index.js</code>
-        </p>
+            <main>
+                <nav className={'navbar'}>
+                    <a href="#" className={'navbar-brand text-light'}>dJS</a>
+                    <ul className={'navbar-nav flex-row'}>
+                        <li className={'nav-item'}>
+                            <a href="/sign-in" className={'btn btn-outline-light'}>Sign In</a>
+                        </li>
+                        <li className={'nav-item'}>
+                            <a href="/sign-up" className={'btn btn-outline-light'}>Sign Up</a>
+                        </li>
+                    </ul>
+                </nav>
 
-        <div className="grid">
-          <a href="https://nextjs.org/docs" className="card">
-            <h3>Documentation &rarr;</h3>
-            <p>Find in-depth information about Next.js features and API.</p>
-          </a>
+                <div className={'content'}>
+                    <h2 className={'content-title'}>Play the way you want!</h2>
+                    <div className={'info'}>
+                        <ul className={'menu navbar-nav'}>
+                            <li className={'menu__item nav-item green'} onClick={(e) => toggleClass(e.target, 'first')}>create</li>
+                            <li className={'menu__item nav-item yellow'} onClick={(e) => toggleClass(e.target, 'second')}>listen</li>
+                            <li className={'menu__item nav-item red'} onClick={(e) => toggleClass(e.target, 'third')}>discover</li>
+                        </ul>
+                        <div className={'description'}>
+                            <article className={'description__item show intro'}>
+                                dJS is a platform that allows users to create and listen to their own mixes<br/>
+                            </article>
+                            <article id={'first'} className={'description__item'}>Free up your creativity. Use your imagination to make some new hits</article>
+                            <article id={'second'} className={'description__item'}>Listen to masterpieces you've already created</article>
+                            <article id={'third'} className={'description__item'}>Share and explore world of music with your friends</article>
+                        </div>
+                    </div>
+                </div>
+            </main>
 
-          <a href="https://nextjs.org/learn" className="card">
-            <h3>Learn &rarr;</h3>
-            <p>Learn about Next.js in an interactive course with quizzes!</p>
-          </a>
+            <Styles/>
 
-          <a
-            href="https://github.com/zeit/next.js/tree/master/examples"
-            className="card"
-          >
-            <h3>Examples &rarr;</h3>
-            <p>Discover and deploy boilerplate example Next.js projects.</p>
-          </a>
-
-          <a
-            href="https://vercel.com/import?filter=next.js&utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-            className="card"
-          >
-            <h3>Deploy &rarr;</h3>
-            <p>
-              Instantly deploy your Next.js site to a public URL with Vercel.
-            </p>
-          </a>
-        </div>
-      </main>
-
-      <footer>
-        <a
-          href="https://vercel.com?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Powered by{' '}
-          <img src="/vercel.svg" alt="Vercel Logo" className="logo" />
-        </a>
-      </footer>
-
-      <style jsx>{`
-        .container {
-          min-height: 100vh;
-          padding: 0 0.5rem;
-          display: flex;
-          flex-direction: column;
-          justify-content: center;
-          align-items: center;
-        }
-
-        main {
-          padding: 5rem 0;
-          flex: 1;
-          display: flex;
-          flex-direction: column;
-          justify-content: center;
-          align-items: center;
-        }
-
-        footer {
-          width: 100%;
-          height: 100px;
-          border-top: 1px solid #eaeaea;
-          display: flex;
-          justify-content: center;
-          align-items: center;
-        }
-
-        footer img {
-          margin-left: 0.5rem;
-        }
-
-        footer a {
-          display: flex;
-          justify-content: center;
-          align-items: center;
-        }
-
-        a {
-          color: inherit;
-          text-decoration: none;
-        }
-
-        .title a {
-          color: #0070f3;
-          text-decoration: none;
-        }
-
-        .title a:hover,
-        .title a:focus,
-        .title a:active {
-          text-decoration: underline;
-        }
-
-        .title {
-          margin: 0;
-          line-height: 1.15;
-          font-size: 4rem;
-        }
-
-        .title,
-        .description {
-          text-align: center;
-        }
-
-        .description {
-          line-height: 1.5;
-          font-size: 1.5rem;
-        }
-
-        code {
-          background: #fafafa;
-          border-radius: 5px;
-          padding: 0.75rem;
-          font-size: 1.1rem;
-          font-family: Menlo, Monaco, Lucida Console, Liberation Mono,
-            DejaVu Sans Mono, Bitstream Vera Sans Mono, Courier New, monospace;
-        }
-
-        .grid {
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          flex-wrap: wrap;
-
-          max-width: 800px;
-          margin-top: 3rem;
-        }
-
-        .card {
-          margin: 1rem;
-          flex-basis: 45%;
-          padding: 1.5rem;
-          text-align: left;
-          color: inherit;
-          text-decoration: none;
-          border: 1px solid #eaeaea;
-          border-radius: 10px;
-          transition: color 0.15s ease, border-color 0.15s ease;
-        }
-
-        .card:hover,
-        .card:focus,
-        .card:active {
-          color: #0070f3;
-          border-color: #0070f3;
-        }
-
-        .card h3 {
-          margin: 0 0 1rem 0;
-          font-size: 1.5rem;
-        }
-
-        .card p {
-          margin: 0;
-          font-size: 1.25rem;
-          line-height: 1.5;
-        }
-
-        .logo {
-          height: 1em;
-        }
-
-        @media (max-width: 600px) {
-          .grid {
-            width: 100%;
-            flex-direction: column;
-          }
-        }
-      `}</style>
-
-      <style jsx global>{`
-        html,
-        body {
-          padding: 0;
-          margin: 0;
-          font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto,
-            Oxygen, Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue,
-            sans-serif;
-        }
-
-        * {
-          box-sizing: border-box;
-        }
-      `}</style>
-    </div>
-  )
+            <style jsx>{` 
+                main {
+                    height: 100vh;
+                    background: url("image/homepage.jpg") no-repeat center;
+                    background-size: cover;
+                    padding: 20px;
+                    
+                    display: flex;
+                    flex-direction: column;
+                }
+                
+                .content {
+                    background-color: rgba(255, 255, 255, .15);  
+                    backdrop-filter: blur(5px);
+                    margin-top: 20px;
+                    flex: 1;
+                }
+                
+                .navbar-brand {
+                    transform: scale(1.5);
+                }
+                
+                .nav-item:not(:last-child) {
+                    margin-right: 20px;
+                }
+                
+                .content {
+                    display: flex;
+                    flex-direction: column;
+                }
+                
+                .content-title {
+                    padding: 20px;
+                    border-bottom: 1px solid white;
+                }
+                
+                .info {
+                    flex: 1;
+                    
+                    display: flex;
+                    flex-wrap: wrap;
+                }
+                
+                .menu {
+                    flex: 0.5;
+                    padding: 20px 0;
+                }
+                
+                .menu__item {
+                    padding: 20px;
+                    border-left: 5px solid white;
+                    cursor: pointer;
+                }
+                
+                .menu__item.active::first-letter,
+                .menu__item:hover::first-letter {
+                    text-transform: uppercase;     
+                }
+                
+                .menu__item.green {
+                    border-color: rgba(0, 255, 0, 0.5);
+                }
+                
+                .menu__item.yellow {
+                    border-color: rgba(255, 255, 0, 0.5);
+                }
+                
+                .menu__item.red {
+                    border-color: rgba(255, 0, 0, 0.5);
+                }
+                
+                .menu__item:not(:last-child) {
+                    margin-bottom: 20px;
+                }
+                
+                .description {
+                    position: relative;
+                    flex: 1;
+                    box-shadow: inset 3px 0px 5px 0px rgba(0, 0, 0, 0.2);
+                }
+                
+                .description__item {
+                    position: absolute;
+                    top: 0;
+                    left: 0;
+                    padding: 40px;
+                    width: 100%;
+                    height: 100%;
+                    font-size: 20px;
+                    
+                    opacity: 0;
+                    transition: opacity .5s;
+                }
+                
+                .description__item.show {
+                    opacity: 1;
+                }
+            `}</style>
+        </>
+    )
 }
