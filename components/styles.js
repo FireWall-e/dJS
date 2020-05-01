@@ -1,6 +1,6 @@
 import React from "react";
 
-export default function Styles () {
+export default function Styles() {
     return (
         <style jsx="true">{`
             body {
@@ -15,7 +15,7 @@ export default function Styles () {
             input {
                 background: none;
                 border: none;
-                border-bottom: 2px solid white;
+                border-bottom: 1.5px solid white;
                 width: 100%;
                 text-align: center;
                 outline: none;
@@ -32,6 +32,19 @@ export default function Styles () {
             
             button:focus {
                 outline: none;
+            }
+            
+            button.loading {
+                animation: loading 1s infinite alternate;
+            }
+            
+            @keyframes loading {
+              50% {
+                border-color: lime;
+              }
+              100% {
+                border-color: darkorange;
+              }
             }
             
             ::placeholder {
