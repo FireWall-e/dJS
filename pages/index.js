@@ -51,13 +51,8 @@ export default function Home() {
 
             <style jsx>{` 
                 main {
-                    height: 100vh;
-                    background: url("image/homepage.jpg") no-repeat center;
-                    background-size: cover;
+                    background-image: url("image/homepage.jpg");
                     padding: 20px;
-                    
-                    display: flex;
-                    flex-direction: column;
                 }
                 
                 .content {

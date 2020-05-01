@@ -2,6 +2,7 @@ import Hat from "../components/hat";
 import Styles from "../components/styles";
 import fetch from "isomorphic-unfetch";
 import {env} from "../environment";
+import React from "react";
 
 export default function SignUp() {
     const isValidForm = (form) => {
@@ -25,12 +26,12 @@ export default function SignUp() {
 
             button.classList.add('loading');
 
-            const res = await fetch(`${env.usersApi}?username=${username}&email=${email}&password=${password}`);
-            const user = await res.json();
+            const res = await fetch(`${env.usersApi}?username=${username}&email=${email}&password=${password}&action=sign-up`);
+            const is = await res.json();
 
             button.classList.remove('loading');
 
-            if (!user.success) {
+            if (!is.success) {
                 messageBox.textContent = 'such username or email already taken'
             } else {
                 messageBox.textContent = 'success';
@@ -45,12 +46,12 @@ export default function SignUp() {
             <Hat title={'Sign Up'}/>
 
             <main>
-                <form action="" id={'form'}>
+                <form action="" id={'form'} autoComplete="off">
                     <h1>sign up</h1>
                     <div className={'content'}>
                         <input id={'username'} type="text" name={'username'} className={'field'} placeholder={'username'} required={true}/>
-                        <input id={'email'} type="text" name={'email'} className={'field'} placeholder={'email'} required={true}/>
-                        <input id={'password'} type="text" className={'field'} name={'password'} placeholder={'password'} required={true}/>
+                        <input id={'email'} type="email" name={'email'} className={'field'} placeholder={'email'} required={true}/>
+                        <input id={'password'} type="password" className={'field'} name={'password'} placeholder={'password'} required={true}/>
                         <div id={'messages'} className={'messages'}/>
                     </div>
                     <div className={'actions'}>
@@ -70,17 +71,15 @@ export default function SignUp() {
             }
             
             main {
-                height: 100vh;
-                background: url("image/sign-up.jpg") no-repeat center;
-                background-size: cover;
+                background-image: url("image/sign-up.jpg");
                 
-                display: flex;
                 align-items: center;
                 justify-content: center;
             }
             
             form {
                 height: 80%;
+                min-width: 300px;
                 width: 35%;
                 background-color: rgba(255, 255, 255, .15);  
                 backdrop-filter: blur(15px);

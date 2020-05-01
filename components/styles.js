@@ -35,6 +35,7 @@ export default function Styles() {
             }
             
             button.loading {
+                pointer-events: none;
                 animation: loading 1s infinite alternate;
             }
             
@@ -45,6 +46,17 @@ export default function Styles() {
               100% {
                 border-color: darkorange;
               }
+            }
+            
+            main {
+                height: 100vh;
+                background-size: cover;
+                background-repeat: no-repeat;
+                background-position: center;
+                overflow-y: auto;
+                
+                display: flex;
+                flex-direction: column;
             }
             
             ::placeholder {
