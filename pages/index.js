@@ -133,13 +133,11 @@ export default function Home() {
                     width: 100%;
                     height: 100%;
                     font-size: 20px;
+                    overflow-y: auto;
                     
                     opacity: 0;
                     transition: opacity .5s;
-                }
-                
-                .description__item.show {
-                    opacity: 1;
+                    pointer-events: none;
                 }
             `}</style>
         </>

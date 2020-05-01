@@ -59,6 +59,11 @@ export default function Styles() {
                 flex-direction: column;
             }
             
+            .show {
+                opacity: 1 !important;
+                pointer-events: initial !important;
+            }
+            
             ::placeholder {
                 color: inherit;
             }

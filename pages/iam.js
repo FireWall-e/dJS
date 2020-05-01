@@ -105,9 +105,10 @@ export default class Iam extends React.PureComponent {
                                         <button type={'button'} className={'proceed-button'} onClick={() => this.proceed()}>proceed</button>
                                     </div>
                                     <div id={'pads'} className={'pads'}>
+                                        <div className={'timer'}></div>
                                         <div className={'pads-actions'}>
-                                            <button>restart</button>
-                                            <button>quit</button>
+                                            <button type={'button'}>restart</button>
+                                            <button type={'button'}>quit</button>
                                         </div>
                                         <div className={'pads-list'}>
                                             <div id={'pad-0'} className={'pad'}>0</div>
@@ -122,7 +123,7 @@ export default class Iam extends React.PureComponent {
                                             <div id={'pad-9'} className={'pad'}>9</div>
                                         </div>
                                         <div className={'pads-actions'}>
-                                            <button>save</button>
+                                            <button type={'button'}>save</button>
                                         </div>
                                     </div>
                                 </div>
@@ -226,23 +227,22 @@ export default class Iam extends React.PureComponent {
                             pointer-events: none;
                         }
                         
+                        .timer {
+                            min-width: 100%;
+                        }
+                                                
+                        .pads-actions {
+                            min-width: 100%;
+                        }
+                        
                         .pads-list {
                             display: flex;
                             flex-direction: column;
                             flex-wrap: wrap;
                         }
                         
-                        .pads-actions {
-                            min-width: 100%;
-                        }
-                        
                         .pad {
                             min-width: 33%;
-                        }
-                        
-                        .show {
-                            opacity: 1;
-                            pointer-events: initial;
                         }
                     `}</style>
                 </>
