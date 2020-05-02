@@ -31,7 +31,7 @@ handler.get(async (req, res) => {
     const {email, password} = req.query;
 
     const getSessionToken = (length = 30) => {
-      let charPool = '!@$^*_-():.0123456789abcdefghijklmnopqrstuvwxyz';
+      const charPool = '!@$^*_-():.0123456789abcdefghijklmnopqrstuvwxyz';
       let token = '';
 
       const getRandomArbitrary = (min, max) => parseInt(Math.random() * (max - min) + min);
@@ -40,7 +40,7 @@ handler.get(async (req, res) => {
         const charIndex = getRandomArbitrary(0, charPool.length);
         const char = charPool[charIndex];
 
-        if (getRandomArbitrary(1, 3) % 2 === 0) char.toUpperCase();
+        if (getRandomArbitrary(1, 3) % 2) char.toUpperCase();
 
         token += char;
       }

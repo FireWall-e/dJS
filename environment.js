@@ -1,3 +1,4 @@
 export const env = {
-    usersApi: "/api/users"
+    usersApi: "/api/users",
+    audioApi: "/api/audio"
 }
